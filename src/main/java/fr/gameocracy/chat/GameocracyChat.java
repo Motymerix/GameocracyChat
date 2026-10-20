@@ -66,8 +66,9 @@ public final class GameocracyChat {
         event.setCanceled(true);
 
         // Diffuse la ligne formatée à tous les joueurs.
-        player.getServer().getPlayerList()
-                .broadcastSystemMessage(output, false);
+        event.getPlayer().level().getServer()
+        .getPlayerList()
+        .broadcastSystemMessage(output, false);
     }
 
     private static String empty(String value) {
