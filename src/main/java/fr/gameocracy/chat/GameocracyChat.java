@@ -35,19 +35,17 @@ public final class GameocracyChat {
     private void onChat(ServerChatEvent event) {
         LuckPerms lp = this.luckPerms;
         if (lp == null) return;
+        
         ServerPlayer player = event.getPlayer();
         CachedMetaData meta = lp.getPlayerAdapter(ServerPlayer.class).getMetaData(player);
-        String prefix = empty(meta.getPrefix());
+        
         String suffix = empty(meta.getSuffix());
-        String usernameColor = empty(meta.getMetaValue("username-color"));
         String messageColor = empty(meta.getMetaValue("message-color"));
 
         MutableComponent output = Component.empty();
-        output.append(parseLegacy(prefix));
-        output.append(parseLegacy(usernameColor + player.getGameProfile().name()));
-        output.append(Component.literal(": "));
         output.append(parseLegacy(messageColor + event.getRawText()));
         output.append(parseLegacy(suffix));
+
         event.setMessage(output);
     }
 
